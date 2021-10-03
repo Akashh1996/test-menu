@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import {useState, useEffect, useRef} from "react"
+import {useState} from "react"
 import './App.css';
 
 
@@ -12,7 +11,6 @@ function App() {
   const [startingY, setstartingY] = useState(0);
 
   const [movingY, setmovingY] = useState(0);
-  const [isTouchLeft, setisTouchLeft] = useState(false) 
 
   const touchStart = (e) => {
     setstartingX(e.touches[0].clientX);
@@ -26,15 +24,14 @@ function App() {
   }
 
   const touchEnd = (e) => {
- if(startingX-100 > movingX && movingY > 100 && movingX > 250){
-     setisTouchLeft(true)
+ if(startingX-100 > movingX && movingY > 100){
      setIsOpen(false)
   }
   }
 
 
   return (
-    <div className="App" className="main" onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
+    <div className="App main" onTouchStart={touchStart} onTouchMove={touchMove} onTouchEnd={touchEnd}>
       {!isOpen && <button onClick={handleClick} className="open"><span>OpenMenu</span></button>}
       {
       <div className={isOpen ? "menu-content animate" : "menu-content"}>
